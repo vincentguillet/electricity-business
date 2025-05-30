@@ -37,6 +37,7 @@ public class AdresseService {
     public Optional<Adresse> updateAdresse(Adresse adresse) {
         return adresseRepository.findById(adresse.getId()).map(existingAdresse -> {
             existingAdresse.setAdresseBase(adresse.getAdresseBase());
+            existingAdresse.setComplement(adresse.getComplement());
             existingAdresse.setCodePostal(adresse.getCodePostal());
             existingAdresse.setVille(adresse.getVille());
             return adresseRepository.save(existingAdresse);
