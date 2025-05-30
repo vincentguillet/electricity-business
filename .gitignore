@@ -1,33 +1,125 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# ---> Custom
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Windows system files
+Thumbs.db
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Unix/Linux system files
+*.swp
+*.swo
+*~
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+.bower_components/
+
+# Build directories
+dist/
+build/
+coverage/
+out/
+target/  # Maven et général
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Generated files
+*.lock
+*.tmp
+*.cache
+*.pid
+
+# Compiled files
+*.class
+*.o
+*.so
+*.exe
+
+# Crash reports
+*.stackdump
+*.dmp
+*.mdmp
+
+# External version control systems
+.svn/
+.hg/
+.git/
+.cvsignore
+
+# Backup and leftover files
+*.bak
+*.old
+*.orig
+
+# Extended macOS system files
+.Spotlight-V100
+.Trashes
+._*
+
+# Node.js
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# JetBrains IDEs (IntelliJ IDEA, PhpStorm, WebStorm, etc.)
+.idea/
 *.iml
 *.ipr
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# Editor temporary files
 .vscode/
+*.code-workspace
+*.sublime-workspace
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Framework-specific files (Symfony, React, Angular, etc.)
+var/
+vendor/
+public/uploads/
+storage/
+
+# Testing and linting tools
+eslintcache/
+.jest/
+.jest-cache/
+.jest-output/
+
+# Docker
+docker-compose.override.yml
+.env.docker.local
+
+# Miscellaneous
+*.log.*
+*.log~
+
+# Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
