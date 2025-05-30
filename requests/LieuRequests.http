@@ -1,0 +1,31 @@
+### GET all lieux
+GET http://localhost:8080/lieux
+
+### GET lieu by id
+GET http://localhost:8080/lieux/1
+
+### POST create new lieu
+POST http://localhost:8080/lieux
+Content-Type: application/json
+
+{
+  "lieuxBase": "111 Rue de la République",
+  "complement": "Appartement 5",
+  "codePostal": "75001",
+  "ville": "Paris"
+}
+
+### PUT update lieu by id
+PUT http://localhost:8080/lieux/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "lieuxBase": "222 Boulevard Gustave Flaubert",
+  "complement": "Le Sextant",
+  "codePostal": "63000",
+  "ville": "Clermont-Ferrand"
+}
+
+### DELETE lieu by id
+DELETE http://localhost:8080/lieux/1
