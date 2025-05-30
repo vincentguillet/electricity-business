@@ -1,0 +1,47 @@
+### GET all vehicules
+GET http://localhost:8080/vehicules
+
+### GET vehicule by id
+GET http://localhost:8080/vehicules/1
+
+### POST create new vehicule
+POST http://localhost:8080/vehicules
+Content-Type: application/json
+
+{
+  "marque": "Peugeot",
+  "modele": "308",
+  "annee": 2020,
+  "couleur": "ROUGE",
+  "immatriculation": "AB-123-CD",
+  "puissance": 110,
+  "typePrise": "TYPE_2",
+  "proprietaire": {
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "email": "jean.dupont@example.com",
+    "dateNaissance": "1980-01-01",
+    "motDePasse": "P@ssw0rd",
+    "telephone": "0123456789",
+    "adresse": {
+      "adresseBase": "111 Rue de la République",
+      "complement": "Appartement 5",
+      "codePostal": "75001",
+      "ville": "Paris"
+    },
+    "role": "UTILISATEUR"
+  }
+}
+
+### PUT update vehicule by id
+PUT http://localhost:8080/vehicules/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "couleur": "BLANC",
+  "immatriculation": "AB-456-EF"
+}
+
+### DELETE vehicule by id
+DELETE http://localhost:8080/vehicules/1
