@@ -27,7 +27,7 @@ dist/
 build/
 coverage/
 out/
-target/  # Maven et général
+target/
 
 # Environment and secrets
 .env
