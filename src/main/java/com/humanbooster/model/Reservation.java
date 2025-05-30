@@ -37,6 +37,6 @@ public class Reservation {
         this.numeroReservation = numeroReservation;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.statut = statut;
+        this.statut = StatutReservation.EN_ATTENTE;
     }
 }

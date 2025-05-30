@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/reservations")
 public class ReservationController {
 
     private final ReservationService reservationService;
@@ -19,12 +20,12 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/reservations")
+    @GetMapping
     public List<Reservation> getAllReservations() {
         return reservationService.getAllReservations();
     }
 
-    @GetMapping("/reservations/utilisateur/{utilisateurId}/borne/{borneId}")
+    @GetMapping("/utilisateur/{utilisateurId}/borne/{borneId}")
     public ResponseEntity<Reservation> getReservationById(
             @PathVariable int utilisateurId,
             @PathVariable int borneId) {
@@ -34,12 +35,12 @@ public class ReservationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/reservations")
+    @PostMapping
     public void saveReservation(@RequestBody Reservation reservation) {
         reservationService.saveReservation(reservation);
     }
 
-    @PutMapping("/reservations/utilisateur/{utilisateurId}/borne/{borneId}")
+    @PutMapping("/utilisateur/{utilisateurId}/borne/{borneId}")
     public ResponseEntity<Reservation> updateReservation(
             @PathVariable int utilisateurId,
             @PathVariable int borneId,
@@ -52,7 +53,7 @@ public class ReservationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/reservations/utilisateur/{utilisateurId}/borne/{borneId}")
+    @DeleteMapping("/utilisateur/{utilisateurId}/borne/{borneId}")
     public ResponseEntity<Reservation> deleteReservationById(
             @PathVariable int utilisateurId,
             @PathVariable int borneId) {

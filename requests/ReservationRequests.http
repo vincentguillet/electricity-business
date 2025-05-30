@@ -1,0 +1,74 @@
+### GET all reservations
+GET http://localhost:8080/reservations
+
+### GET reservation by utilisateurId and borneId
+GET http://localhost:8080/reservations/utilisateur/1/borne/5
+
+### POST create new reservation
+POST http://localhost:8080/reservations
+Content-Type: application/json
+
+{
+  "numeroReservation": "reservation123",
+  "utilisateur": {
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "email": "jean.dupont@example.com",
+    "dateNaissance": "1980-01-01",
+    "motDePasse": "P@ssw0rd",
+    "telephone": "0123456789",
+    "adresse": {
+      "adresseBase": "111 Rue de la République",
+      "complement": "Appartement 5",
+      "codePostal": "75001",
+      "ville": "Paris"
+    },
+    "role": "UTILISATEUR"
+  },
+  "borne": {
+    "numero": 6547,
+    "lieu": {
+      "nom": "Human Booster",
+      "adresse": {
+        "adresseBase": "222 Boulevard Gustave Flaubert",
+        "complement": "Le Sextant",
+        "codePostal": "63000",
+        "ville": "Clermont-Ferrand"
+      },
+      "utilisateur": {
+        "nom": "Dupont",
+        "prenom": "Jean",
+        "email": "jean.dupont@example.com",
+        "dateNaissance": "1980-01-01",
+        "motDePasse": "P@ssw0rd",
+        "telephone": "0123456789",
+        "adresse": {
+          "adresseBase": "111 Rue de la République",
+          "complement": "Appartement 5",
+          "codePostal": "75001",
+          "ville": "Paris"
+        },
+        "role": "UTILISATEUR"
+      }
+    },
+    "tarifMinute": 0.15,
+    "puissance": 22,
+    "instructions": "Insérer la carte pour commencer la recharge."
+  },
+    "dateDebut": "2023-10-01T12:00:00Z",
+    "dateFin": "2023-10-01T14:00:00Z"
+}
+
+### PUT update reservation utilisateurId and borneId
+PUT http://localhost:8080/reservations/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "statut": "TERMINEE",
+  "note": 5,
+  "commentaire": "Super expérience, borne rapide et facile à utiliser."
+}
+
+### DELETE reservation by utilisateurId and borneId
+DELETE http://localhost:8080/reservations/utilisateur/1/borne/5
