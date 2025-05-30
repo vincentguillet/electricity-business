@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/adresses")
 public class AdresseController {
 
     private final AdresseService adresseService;
@@ -18,24 +19,24 @@ public class AdresseController {
         this.adresseService = adresseService;
     }
 
-    @GetMapping("/adresses")
+    @GetMapping
     public List<Adresse> getAllAdresses() {
         return adresseService.getAllAdresses();
     }
 
-    @GetMapping("/adresses/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Adresse> getAdresseById(@PathVariable int id) {
         return adresseService.getAdresseById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/adresses")
+    @PostMapping
     public void saveAdresse(@RequestBody Adresse adresse) {
         adresseService.saveAdresse(adresse);
     }
 
-    @PutMapping("/adresses/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Adresse> updateAdresse(@PathVariable int id, @RequestBody Adresse adresse) {
         return adresseService.getAdresseById(id)
                 .map(existingAdresse -> adresseService.updateAdresse(adresse)
@@ -44,7 +45,7 @@ public class AdresseController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/adresses/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Adresse> deleteAdresseById(@PathVariable int id) {
         return adresseService.deleteAdresseById(id)
                 .map(adresse -> ResponseEntity.ok().body(adresse))
