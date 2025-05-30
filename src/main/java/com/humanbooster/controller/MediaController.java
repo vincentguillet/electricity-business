@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/medias")
 public class MediaController {
 
     private final MediaService mediaService;
@@ -18,24 +19,24 @@ public class MediaController {
         this.mediaService = mediaService;
     }
 
-    @GetMapping("/medias")
+    @GetMapping
     public List<Media> getAllMedias() {
         return mediaService.getAllMedias();
     }
 
-    @GetMapping("/medias/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Media> getMediaById(@PathVariable int id) {
         return mediaService.getMediaById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/medias")
+    @PostMapping
     public void saveMedia(@RequestBody Media media) {
         mediaService.saveMedia(media);
     }
 
-    @PutMapping("/medias/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Media> updateMedia(@PathVariable int id, @RequestBody Media media) {
         return mediaService.getMediaById(id)
                 .map(existingMedia -> mediaService.updateMedia(media)
@@ -44,7 +45,7 @@ public class MediaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/medias/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Media> deleteMediaById(@PathVariable int id) {
         return mediaService.deleteMediaById(id)
                 .map(media -> ResponseEntity.ok().body(media))

@@ -1,0 +1,29 @@
+### GET all medias
+GET http://localhost:8080/medias
+
+### GET media by id
+GET http://localhost:8080/medias/1
+
+### POST create new media
+POST http://localhost:8080/medias
+Content-Type: application/json
+
+{
+  "nom": "IMG_20231001_123456.jpg",
+  "type": "PHOTO",
+  "taille": 3456,
+  "url": "https://example.com/media/IMG_20231001_123456.jpg"
+}
+
+### PUT update media by id
+PUT http://localhost:8080/medias/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nom": "IMG_20231001_123456_updated.jpg",
+  "taille": 3328
+}
+
+### DELETE media by id
+DELETE http://localhost:8080/medias/1
