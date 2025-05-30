@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/utilisateurs")
 public class UtilisateurController {
 
     private final UtilisateurService utilisateurService;
@@ -18,24 +19,24 @@ public class UtilisateurController {
         this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping("/utilisateurs")
+    @GetMapping
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurService.getAllUtilisateurs();
     }
 
-    @GetMapping("/utilisateurs/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Utilisateur> getUtilisateurById(@PathVariable int id) {
         return utilisateurService.getUtilisateurById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/utilisateurs")
+    @PostMapping
     public void saveUtilisateur(@RequestBody Utilisateur utilisateur) {
         utilisateurService.saveUtilisateur(utilisateur);
     }
 
-    @PutMapping("/utilisateurs/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable int id, @RequestBody Utilisateur utilisateur) {
         return utilisateurService.getUtilisateurById(id)
                 .map(existingUtilisateur -> utilisateurService.updateUtilisateur(utilisateur)
@@ -44,7 +45,7 @@ public class UtilisateurController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/utilisateurs/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Utilisateur> deleteUtilisateurById(@PathVariable int id) {
         return utilisateurService.deleteUtilisateurById(id)
                 .map(utilisateur -> ResponseEntity.ok().body(utilisateur))
