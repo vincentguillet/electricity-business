@@ -1,0 +1,53 @@
+### GET all bornes
+GET http://localhost:8080/bornes
+
+### GET borne by id
+GET http://localhost:8080/bornes/1
+
+### POST create new borne
+POST http://localhost:8080/bornes
+Content-Type: application/json
+
+{
+  "numero": 6547,
+  "lieu": {
+    "nom": "Human Booster",
+    "adresse": {
+      "adresseBase": "222 Boulevard Gustave Flaubert",
+      "complement": "Le Sextant",
+      "codePostal": "63000",
+      "ville": "Clermont-Ferrand"
+    },
+    "utilisateur": {
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "email": "jean.dupont@example.com",
+      "dateNaissance": "1980-01-01",
+      "motDePasse": "P@ssw0rd",
+      "telephone": "0123456789",
+      "adresse": {
+        "adresseBase": "111 Rue de la République",
+        "complement": "Appartement 5",
+        "codePostal": "75001",
+        "ville": "Paris"
+      },
+      "role": "UTILISATEUR"
+    }
+  },
+  "tarifMinute": 0.15,
+  "puissance": 22,
+  "instructions": "Insérer la carte pour commencer la recharge."
+}
+
+### PUT update borne by id
+PUT http://localhost:8080/bornes/5
+Content-Type: application/json
+
+{
+  "id": 5,
+  "tarifMinute": 0.17,
+  "instructions": "Pas d'instructions particulières."
+}
+
+### DELETE borne by id
+DELETE http://localhost:8080/bornes/1
