@@ -9,10 +9,28 @@ POST http://localhost:8080/lieux
 Content-Type: application/json
 
 {
-  "lieuxBase": "111 Rue de la République",
-  "complement": "Appartement 5",
-  "codePostal": "75001",
-  "ville": "Paris"
+    "nom": "Human Booster",
+    "adresse": {
+      "adresseBase": "222 Boulevard Gustave Flaubert",
+      "complement": "Le Sextant",
+      "codePostal": "63000",
+      "ville": "Clermont-Ferrand"
+    },
+    "utilisateur": {
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "email": "jean.dupont@example.com",
+      "dateNaissance": "1980-01-01",
+      "motDePasse": "P@ssw0rd",
+      "telephone": "0123456789",
+      "adresse": {
+        "adresseBase": "111 Rue de la République",
+        "complement": "Appartement 5",
+        "codePostal": "75001",
+        "ville": "Paris"
+      },
+      "role": "UTILISATEUR"
+    }
 }
 
 ### PUT update lieu by id
@@ -21,10 +39,7 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "lieuxBase": "222 Boulevard Gustave Flaubert",
-  "complement": "Le Sextant",
-  "codePostal": "63000",
-  "ville": "Clermont-Ferrand"
+  "nom": "Human Booster Clermont"
 }
 
 ### DELETE lieu by id
