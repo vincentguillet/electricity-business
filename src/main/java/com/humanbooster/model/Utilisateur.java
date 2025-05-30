@@ -52,7 +52,7 @@ public class Utilisateur {
 
     private boolean enVacances;
 
-    @OneToMany
+    @OneToMany(mappedBy = "utilisateur")
     private List<Reservation> reservations = new ArrayList<>();
 
     public Utilisateur() {}

@@ -33,7 +33,7 @@ public class Borne {
 
     private String instructions;
 
-    @OneToMany
+    @OneToMany(mappedBy = "borne")
     private List<Reservation> reservations = new ArrayList<>();
 
     public Borne() {}
