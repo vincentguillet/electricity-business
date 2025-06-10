@@ -59,7 +59,6 @@ public class BorneService {
             }
         }
 
-
         if (lieu.getId() == null) {
             lieu = lieuRepository.save(lieu);
             borne.setLieu(lieu);

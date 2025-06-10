@@ -17,5 +17,4 @@ public class ElectricityBusinessApplication {
 
         String utilisateurs = client.sendRequest(Method.GET, "http://localhost:8080/utilisateurs", null);
     }
-
 }

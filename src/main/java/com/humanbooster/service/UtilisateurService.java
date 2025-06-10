@@ -1,6 +1,8 @@
 package com.humanbooster.service;
 
+import com.humanbooster.model.Adresse;
 import com.humanbooster.model.Utilisateur;
+import com.humanbooster.repository.AdresseRepository;
 import com.humanbooster.repository.UtilisateurRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,27 @@ import java.util.Optional;
 public class UtilisateurService {
 
     private final UtilisateurRepository utilisateurRepository;
+    private final AdresseRepository adresseRepository;
 
     @Autowired
-    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurService(UtilisateurRepository utilisateurRepository, AdresseRepository adresseRepository) {
         this.utilisateurRepository = utilisateurRepository;
+        this.adresseRepository = adresseRepository;
     }
 
     @Transactional
     public void saveUtilisateur(Utilisateur utilisateur) {
+
+        Adresse adresseUtilisateur = utilisateur.getAdresse();
+
+        if (utilisateur.getId() == null) {
+            if(adresseUtilisateur != null && adresseUtilisateur.getId() == null) {
+                // Si l'adresse de l'utilisateur n'existe pas en BDD, on la save
+                adresseUtilisateur = adresseRepository.save(adresseUtilisateur);
+                utilisateurRepository.save(utilisateur);
+            }
+        }
+
         utilisateurRepository.save(utilisateur);
     }
 

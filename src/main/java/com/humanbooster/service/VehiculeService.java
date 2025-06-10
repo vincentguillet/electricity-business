@@ -1,6 +1,8 @@
 package com.humanbooster.service;
 
+import com.humanbooster.model.Utilisateur;
 import com.humanbooster.model.Vehicule;
+import com.humanbooster.repository.UtilisateurRepository;
 import com.humanbooster.repository.VehiculeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,25 @@ import java.util.Optional;
 public class VehiculeService {
 
     private final VehiculeRepository vehiculeRepository;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Autowired
-    public VehiculeService(VehiculeRepository vehiculeRepository) {
+    public VehiculeService(VehiculeRepository vehiculeRepository, UtilisateurRepository utilisateurRepository) {
         this.vehiculeRepository = vehiculeRepository;
+        this.utilisateurRepository = utilisateurRepository;
     }
 
     @Transactional
     public void saveVehicule(Vehicule vehicule) {
+
+        Utilisateur proprietaire = vehicule.getProprietaire();
+
+        if (proprietaire != null && proprietaire.getId() == null) {
+            // Si le propriétaire (Utilisateur) n'existe pas, on le save
+            proprietaire = utilisateurRepository.save(proprietaire);
+            vehicule.setProprietaire(proprietaire);
+        }
+
         vehiculeRepository.save(vehicule);
     }
 
