@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,13 +37,19 @@ public class User implements UserDetails {
     @Column(length = 30, nullable = false)
     private String lastName;
 
-    @Column(length = 0)
-    private String username;
+    private LocalDate birthDate;
 
     @Email
     @NotBlank
     @Column(length = 120, unique = true, nullable = false)
     private String email;
+
+    @Pattern(regexp = "\\+?[0-9]{10,15}", message = "Numéro de téléphone invalide")
+    @Column(length = 15, unique = true)
+    private String phoneNumber;
+
+    @Column(length = 0)
+    private String username;
 
     @NotBlank
     @Column(length = 120, nullable = false)
@@ -50,6 +58,9 @@ public class User implements UserDetails {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
+
+    private boolean onVacation;
+    private boolean isBanned;
 
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
