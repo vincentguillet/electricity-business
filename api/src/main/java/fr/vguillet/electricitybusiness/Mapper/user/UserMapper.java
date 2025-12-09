@@ -1,4 +1,4 @@
-package fr.vguillet.electricitybusiness.Mapper;
+package fr.vguillet.electricitybusiness.Mapper.user;
 
 import fr.vguillet.electricitybusiness.dto.user.UserDTO;
 import fr.vguillet.electricitybusiness.model.user.Role;
@@ -8,6 +8,7 @@ public class UserMapper {
 
     public static User fromDto(UserDTO userDTO) {
         User user = new User();
+        user.setId(userDTO.getId());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setBirthDate(userDTO.getBirthDate());
@@ -23,6 +24,7 @@ public class UserMapper {
 
     public static UserDTO toDto(User user) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setBirthDate(user.getBirthDate());

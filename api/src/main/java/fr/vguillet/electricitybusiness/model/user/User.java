@@ -1,6 +1,7 @@
 package fr.vguillet.electricitybusiness.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import fr.vguillet.electricitybusiness.model.app.reservation.Reservation;
 import fr.vguillet.electricitybusiness.model.security.Token;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -61,6 +62,9 @@ public class User implements UserDetails {
 
     private boolean onVacation;
     private boolean isBanned;
+
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservations;
 
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
