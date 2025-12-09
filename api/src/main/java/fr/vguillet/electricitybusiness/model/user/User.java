@@ -1,6 +1,7 @@
 package fr.vguillet.electricitybusiness.model.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import fr.vguillet.electricitybusiness.model.app.Vehicle;
 import fr.vguillet.electricitybusiness.model.app.reservation.Reservation;
 import fr.vguillet.electricitybusiness.model.security.Token;
 import jakarta.persistence.*;
@@ -65,6 +66,10 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
+
+    @OneToOne(mappedBy = "owner")
+    @JsonManagedReference
+    private Vehicle vehicle;
 
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
