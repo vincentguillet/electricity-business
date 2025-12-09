@@ -1,6 +1,6 @@
 package fr.vguillet.electricitybusiness.controller.auth;
 
-import fr.vguillet.electricitybusiness.Mapper.UserMapper;
+import fr.vguillet.electricitybusiness.Mapper.user.UserMapper;
 import fr.vguillet.electricitybusiness.dto.auth.AuthRequest;
 import fr.vguillet.electricitybusiness.dto.auth.AuthResponse;
 import fr.vguillet.electricitybusiness.dto.user.UserDTO;
