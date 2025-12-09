@@ -19,13 +19,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
-    public void saveUser(User user) {
-        if (user.getId() == null) {
-            userRepository.save(user);
-        }
-    }
-
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -34,20 +27,27 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Optional<User> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    public Optional<User> getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    @Transactional
+    public void saveUser(User user) {
+        if (user.getId() == null) {
+            userRepository.save(user);
+        }
     }
 
     @Transactional
     public Optional<User> updateUser(User user) {
         return userRepository.findById(user.getId()).map(existingUser -> {
+            existingUser.setFirstName(user.getFirstName());
+            existingUser.setLastName(user.getLastName());
+            existingUser.setBirthDate(user.getBirthDate());
             existingUser.setEmail(user.getEmail());
+            existingUser.setPhoneNumber(user.getPhoneNumber());
             existingUser.setUsername(user.getUsername());
             existingUser.setPassword(user.getPassword());
+            existingUser.setRole(user.getRole());
+            existingUser.setOnVacation(user.isOnVacation());
+            existingUser.setBanned(user.isBanned());
+            existingUser.setReservations(user.getReservations());
             return userRepository.save(existingUser);
         });
     }
