@@ -1,0 +1,137 @@
+<section class="auth-wrap">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>Inscription</mat-card-title>
+      <mat-card-subtitle>Créer un nouveau compte</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-grid">
+
+        <!-- First Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <input matInput
+                 id="firstName"
+                 name="firstName"
+                 formControlName="firstName"
+                 type="text"
+                 autocomplete="given-name"
+                 required>
+          @if (isFieldInvalid('firstName')) {
+            <mat-error>{{ getFieldError('firstName') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Last Name -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput
+                 id="lastName"
+                 name="lastName"
+                 formControlName="lastName"
+                 type="text"
+                 autocomplete="family-name"
+                 required>
+          @if (isFieldInvalid('lastName')) {
+            <mat-error>{{ getFieldError('lastName') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Username -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput
+                 id="username"
+                 name="username"
+                 formControlName="username"
+                 type="text"
+                 autocomplete="username"
+                 required>
+          @if (isFieldInvalid('username')) {
+            <mat-error>{{ getFieldError('username') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput
+                 id="email"
+                 name="email"
+                 formControlName="email"
+                 type="email"
+                 autocomplete="email"
+                 required>
+          @if (isFieldInvalid('email')) {
+            <mat-error>{{ getFieldError('email') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput
+                 id="password"
+                 name="password"
+                 formControlName="password"
+                 type="password"
+                 autocomplete="new-password"
+                 required>
+          @if (isFieldInvalid('password')) {
+            <mat-error>{{ getFieldError('password') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Password confirmation -->
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmer le mot de passe</mat-label>
+          <input matInput
+                 id="confirmPassword"
+                 name="confirmPassword"
+                 formControlName="confirmPassword"
+                 type="password"
+                 autocomplete="new-password"
+                 required>
+          @if (isFieldInvalid('confirmPassword')) {
+            <mat-error>{{ getFieldError('confirmPassword') }}</mat-error>
+          }
+        </mat-form-field>
+        @if (registerForm.hasError('passwordMismatch') && (registerForm.dirty || registerForm.touched || isSubmitted)) {
+          <mat-error>Les mots de passe ne correspondent pas</mat-error>
+        }
+
+        <!-- Terms and Conditions -->
+        <mat-checkbox formControlName="termsAndConditions" id="iAgree">
+          J'accepte les <a href="#" target="_blank" rel="noopener">conditions générales d'utilisation</a>
+        </mat-checkbox>
+        @if (isFieldInvalid('termsAndConditions')) {
+          <div class="mat-caption mat-error">{{ getFieldError('termsAndConditions') }}</div>
+        }
+
+        <!-- Submit Button -->
+        <div class="actions">
+          <button mat-raised-button color="primary"
+                  type="submit"
+                  [disabled]="isLoading || registerForm.invalid">
+            @if (isLoading) {
+              <mat-progress-spinner diameter="16" mode="indeterminate"></mat-progress-spinner>
+              <span class="ml-8">Inscription…</span>
+            } @else {
+              S'inscrire
+            }
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions align="end">
+      <span class="mat-body-small">
+        Vous avez déjà un compte ?
+        <a [routerLink]="'/login'">Se connecter</a>
+      </span>
+    </mat-card-actions>
+  </mat-card>
+</section>
