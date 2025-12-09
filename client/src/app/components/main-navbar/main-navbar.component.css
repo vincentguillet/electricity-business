@@ -1,0 +1,127 @@
+:root {
+  --primary: rgb(13, 110, 253);
+  --primary-hover: rgb(10, 88, 202);
+  --body-bg: #f8f9fa;
+}
+
+.mat-toolbar {
+  padding-top: env(safe-area-inset-top);
+  position: relative;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  min-height: 56px;
+}
+
+.brand {
+  display: flex;
+  font-weight: 600;
+  flex: 0 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  h1 {
+    margin-left: 1rem;
+    font-weight: bold;
+  }
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex: 0 1 auto;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow: visible;
+}
+
+
+.mat-menu-item mat-icon {
+  margin-right: 8px;
+}
+
+.nav-actions button {
+  min-width: 0;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-actions button .mat-button-wrapper {
+  display: inline-block;
+  max-width: calc(100% - 56px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+
+@media (max-width: 720px) {
+  .mat-toolbar {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .container {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .brand {
+    order: 1;
+    width: 100%;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .nav-actions {
+    order: 2;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .nav-actions button {
+    padding: 6px 8px;
+    font-size: 0.95rem;
+    min-width: 0;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .nav-actions button .mat-button-wrapper {
+    max-width: calc(100% - 40px);
+  }
+
+  .nav-actions mat-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+}

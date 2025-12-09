@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <div class="brand" [routerLink]="'/'">
+      <mat-icon>ev_station</mat-icon>
+      <mat-icon>directions_car</mat-icon>
+      <h1>Electricity Business</h1>
+    </div>
+    <div class="nav-actions">
+      @if (getUser(); as user) {
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+          Connecté en tant que {{ user.username }}
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          @if (authService.hasRole('Administrator')) {
+            <button mat-menu-item [routerLink]="'/admin'">
+              <mat-icon>admin_panel_settings</mat-icon>
+              Administration
+            </button>
+          }
+          <button mat-menu-item [routerLink]="'/profile'">
+            <mat-icon>person</mat-icon>
+            Profil
+          </button>
+          <button mat-menu-item [routerLink]="'/dashboard'">
+            <mat-icon>dashboard</mat-icon>
+            Tableau de bord
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Se déconnecter
+          </button>
+        </mat-menu>
+      } @else {
+        <button mat-button [routerLink]="'/login'">Se connecter</button>
+        <button mat-button [routerLink]="'/register'">S'inscrire</button>
+      }
+    </div>
+  </div>
+</mat-toolbar>
