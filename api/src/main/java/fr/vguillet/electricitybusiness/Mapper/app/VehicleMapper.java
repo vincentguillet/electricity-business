@@ -1,5 +1,6 @@
 package fr.vguillet.electricitybusiness.Mapper.app;
 
+import fr.vguillet.electricitybusiness.Mapper.user.UserMapper;
 import fr.vguillet.electricitybusiness.dto.app.VehicleDTO;
 import fr.vguillet.electricitybusiness.model.app.PlugType;
 import fr.vguillet.electricitybusiness.model.app.Vehicle;
@@ -16,6 +17,7 @@ public class VehicleMapper {
         vehicle.setLicensePlate(vehicleDTO.getLicensePlate());
         vehicle.setPlugType(vehicleDTO.getPlugType() != null ? PlugType.valueOf(vehicleDTO.getPlugType()) : null);
         vehicle.setBatteryCapacity(vehicleDTO.getBatteryCapacity());
+        vehicle.setOwner(vehicleDTO.getOwnerDTO() != null ? UserMapper.fromDto(vehicleDTO.getOwnerDTO()) : null);
         return vehicle;
     }
 
@@ -29,6 +31,7 @@ public class VehicleMapper {
         vehicleDTO.setLicensePlate(vehicle.getLicensePlate());
         vehicleDTO.setPlugType(vehicle.getPlugType() != null ? vehicle.getPlugType().getDisplayName() : null);
         vehicleDTO.setBatteryCapacity(vehicle.getBatteryCapacity());
+        vehicleDTO.setOwnerDTO(vehicle.getOwner() != null ? UserMapper.toDto(vehicle.getOwner()) : null);
         return vehicleDTO;
     }
 }

@@ -1,5 +1,6 @@
 package fr.vguillet.electricitybusiness.dto.app;
 
+import fr.vguillet.electricitybusiness.dto.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,5 @@ public class VehicleDTO {
     private String licensePlate;
     private String plugType;
     private Integer batteryCapacity;
+    private UserDTO ownerDTO;
 }

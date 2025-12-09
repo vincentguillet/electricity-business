@@ -1,5 +1,7 @@
 package fr.vguillet.electricitybusiness.model.app;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import fr.vguillet.electricitybusiness.model.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -46,4 +48,9 @@ public class Vehicle {
     private PlugType plugType;
 
     private Integer batteryCapacity; // in kWh
+
+    @OneToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @JsonBackReference
+    private User owner;
 }
