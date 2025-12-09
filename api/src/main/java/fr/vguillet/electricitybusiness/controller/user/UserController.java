@@ -1,9 +1,11 @@
 package fr.vguillet.electricitybusiness.controller.user;
 
-import fr.vguillet.electricitybusiness.model.user.User;
+import fr.vguillet.electricitybusiness.Mapper.user.UserMapper;
+import fr.vguillet.electricitybusiness.dto.user.UserDTO;
 import fr.vguillet.electricitybusiness.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNullApi;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,35 +22,37 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsers().stream()
+                .map(UserMapper::toDto)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         return userService.getUserById(id)
-                .map(ResponseEntity::ok)
+                .map(user -> ResponseEntity.ok(UserMapper.toDto(user)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public void saveUser(@RequestBody User user) {
-        userService.saveUser(user);
+    public void saveUser(@RequestBody UserDTO userDTO) {
+        userService.saveUser(UserMapper.fromDto(userDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         return userService.getUserById(id)
-                .map(existingUser -> userService.updateUser(user)
-                        .map(ResponseEntity::ok)
+                .map(existingUser -> userService.updateUser(UserMapper.fromDto(userDTO))
+                        .map(user -> ResponseEntity.ok(UserMapper.toDto(user)))
                         .orElse(ResponseEntity.notFound().build()))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
+    public ResponseEntity<UserDTO> deleteUserById(@PathVariable Long id) {
         return userService.deleteUserById(id)
-                .map(user -> ResponseEntity.ok().body(user))
+                .map(user -> ResponseEntity.ok(UserMapper.toDto(user)))
                 .orElse(ResponseEntity.notFound().build());
     }
 }
